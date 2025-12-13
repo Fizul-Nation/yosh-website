@@ -164,7 +164,7 @@
         .hero {
     /* DESKTOP IMAGE */
     background: linear-gradient(#00000099, rgba(0, 0, 0, 0.6)),
-                url('../images/ump1.png');
+                url('../images/ump1.jpg');
     background-size: cover;
     background-position: center;
 
@@ -180,7 +180,7 @@
     .hero {
         /* MOBILE IMAGE */
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                    url('../images/ump.png');
+                    url('../images/ump.jpg');
         background-size: cover;
         background-position: center;
     }
