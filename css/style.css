@@ -47,6 +47,81 @@
             padding: 1rem 0;
         }
 
+        /* HAMBURGER BUTTON (Mobile Only) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    display: block;
+}
+
+/* MOBILE MENU PANEL */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 50vh;
+    background: black;
+    color: white;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: right 0.3s ease;
+    z-index: 1500;
+}
+
+.mobile-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.mobile-menu a:hover {
+    color: var(--secondary);
+}
+
+/* CLOSE BUTTON */
+.close-menu {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* SHOW MENU */
+.mobile-menu.active {
+    right: 0;
+}
+
+/* SHOW HAMBURGER ON MOBILE */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav .nav-links {
+        display: none;
+    }
+}
+
+
+
         .logo {
             font-family: 'Fredoka', cursive;
             font-size: 1.8rem;

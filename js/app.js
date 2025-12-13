@@ -324,3 +324,21 @@ const imageElement = event.image
             console.log(`Event "${eventTitle}" has been deleted`);
         }
     
+        const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
+
+hamburger.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+});
+
+closeMenu.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+});
+
+// Close when clicking a link
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+    });
+});
