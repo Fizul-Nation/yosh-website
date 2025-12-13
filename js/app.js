@@ -302,13 +302,18 @@ const imageElement = event.image
                 modalImage.style.display = 'none';
             }
 
-            // Set register link
-            const registerLink = document.getElementById('modal-register');
-            registerLink.href = `mailto:info@univenture.edu?subject=Registration for ${event.title}&body=I would like to register for the ${event.title} event on ${formattedDate}.`;
-
             // Show modal
             eventModal.style.display = 'flex';
         }
+
+        document.getElementById('modal-register').addEventListener('click', (e) => {
+    e.preventDefault();               // avoid default jump
+    eventModal.style.display = 'none'; // close modal
+    document.querySelector('#contact').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
+
 
         // Delete event function
         function deleteEvent(eventTitle) {
