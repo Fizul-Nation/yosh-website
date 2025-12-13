@@ -162,15 +162,30 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/ump.jpg');
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            padding: 5rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+    /* DESKTOP IMAGE */
+    background: linear-gradient(#00000099, rgba(0, 0, 0, 0.6)),
+                url('../images/ump1.png');
+    background-size: cover;
+    background-position: center;
+
+    /* keep everything else */
+    color: var(--white);
+    padding: 5rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        /* MOBILE IMAGE */
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                    url('../images/ump.png');
+        background-size: cover;
+        background-position: center;
+    }
+}
+
 
         .hero h1 {
             font-family: 'Fredoka', cursive;
