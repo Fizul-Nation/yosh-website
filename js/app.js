@@ -234,12 +234,18 @@ function normalizeImageUrl(url) {
             card.className = 'event-card';
 
             // Format date
-            const eventDate = new Date(event.date);
-            const formattedDate = eventDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+            let formattedDate;
+
+if (!event.date || isNaN(Date.parse(event.date))) {
+    formattedDate = "Stay Tuned";
+} else {
+    formattedDate = new Date(event.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
 
             // Use lazy loading + async decode + fallback for robustness/performance
 const imageElement = event.image 
