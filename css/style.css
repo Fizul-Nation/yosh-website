@@ -771,13 +771,19 @@
 
 
 .close-menu {
-    background: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2rem;
+    background: black;       /* SOLID background so it blocks clicks */
+    padding: 10px 15px;      /* Bigger tap area */
+    border-radius: 8px;      /* Optional – looks nicer */
     border: none;
     color: white;
-    font-size: 2rem;
-    align-self: flex-end;
     cursor: pointer;
+    z-index: 5000;           /* Always on top of hamburger */
 }
+
 
 .mobile-menu.active {
     right: 0;
