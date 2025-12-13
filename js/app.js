@@ -39,9 +39,9 @@
       highlight: String(r.highlight).toLowerCase() === 'true'
     }));
 
-    const today = new Date();
-    window.pastEvents = rows.filter(e => new Date(e.date) < today);
-    window.upcomingEvents = rows.filter(e => new Date(e.date) >= today);
+    window.pastEvents = rows.filter(e => e.status === "past");
+window.upcomingEvents = rows.filter(e => e.status === "upcoming");
+
 
     displayPastEvents();
     displayUpcomingEvents();
@@ -277,12 +277,14 @@ const imageElement = event.image
         // Show event modal with details
         function showEventModal(event) {
             // Format date
-            const eventDate = new Date(event.date);
-            const formattedDate = eventDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+            let formattedDate = event.date && !isNaN(Date.parse(event.date))
+    ? new Date(event.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    : event.date; // Show "Stay Tuned" or whatever text
+
 
             // Set modal content
             document.getElementById('modal-title').textContent = event.title;
