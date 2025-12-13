@@ -1,4 +1,4 @@
-<script>
+
         // DOM elements
         const pastEventsContainer = document.getElementById('past-events-container');
         const upcomingEventsContainer = document.getElementById('upcoming-events-container');
@@ -21,6 +21,8 @@
     const url = 'https://raw.githubusercontent.com/Fizul-Nation/yosh-events-assets/main/events.csv';
     const res = await fetch(url);
     const text = await res.text();
+
+    console.log("Fetched CSV text:", text);
 
     const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
 
@@ -319,4 +321,4 @@ const imageElement = event.image
             // Optionally, you could also update the CSV file here
             console.log(`Event "${eventTitle}" has been deleted`);
         }
-    </script>
+    
