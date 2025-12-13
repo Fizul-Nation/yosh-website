@@ -799,15 +799,17 @@
     }
 }
 
+/* PRO PARALLAX FIX — mobile disables buggy fixed */
 @media (max-width: 768px) {
     .about,
     .past-events,
     .upcoming {
-        background-attachment: scroll !important;
+        background-attachment: scroll !important; /* stops mobile zoom bug */
         background-size: cover;
         background-position: center;
     }
 }
+
 
 
 
