@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOSH UMPSA - Where Campus Adventures Begin!</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    
+
+
+
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="https://picsum.photos/seed/yoshumpsalogo/40/40.jpg" alt="YOSH UMPSA Logo">
+                YOSH UMPSA
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#past-events">Past Events</a></li>
+                <li><a href="#upcoming-events">Upcoming Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-decoration">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+        <div class="container">
+            <h1>Where Campus Adventures Begin!</h1>
+            <p>Join the most exciting club on campus where we turn ordinary days into extraordinary memories. From workshops to wild parties, we've got it all!</p>
+            <a href="#upcoming-events" class="btn">Join Our Next Event</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About YOSH UMPSA</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Welcome to YOSH UMPSA, the most happening club on campus! We're a diverse community of students passionate about creating memorable experiences and fostering connections.</p>
+                    <p>Founded in 2019, we've organized over 50 events ranging from tech workshops and career fairs to music festivals and outdoor adventures. Our mission is simple: to make university life more exciting, meaningful, and fun!</p>
+                    <p>Whether you're looking to develop new skills, meet like-minded people, or just have a good time, YOSH UMPSA has something for everyone. Join us and be part of something amazing!</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://picsum.photos/seed/univenture/500/400.jpg" alt="YOSH UMPSA Club Members">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Events Section -->
+    <section id="past-events" class="past-events">
+        <div class="container">
+            <h2 class="section-title">Our Epic Past Events</h2>
+            <div class="events-container" id="past-events-container">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section id="upcoming-events" class="upcoming">
+        <div class="container">
+            <h2 class="section-title">Upcoming Adventures</h2>
+            <div class="events-container" id="upcoming-events-container">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>YOSH UMPSA</h3>
+                    <p>Making university life more exciting, meaningful, and fun since 2019!</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#past-events">Past Events</a></li>
+                        <li><a href="#upcoming-events">Upcoming Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Student Union Building, Room 204</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@univenture.edu</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on our latest events!</p>
+                    <form>
+                        <input type="email" placeholder="Your email" style="padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 5px; border: none;">
+                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 YOSH UMPSA. All rights reserved. Made with <i class="fas fa-heart" style="color: var(--secondary);"></i> by students, for students.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Event Modal -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Event Title</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-image" src="" alt="Event Image" class="modal-image">
+                <div class="modal-info">
+                    <div class="modal-info-item">
+                        <i class="fas fa-calendar"></i>
+                        <span id="modal-date">Date</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="modal-time">Time</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="modal-location">Location</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fas fa-tag"></i>
+                        <span id="modal-category">Category</span>
+                    </div>
+                </div>
+                <p id="modal-description">Event description goes here.</p>
+                <div style="margin-top: 2rem; text-align: center;">
+                    <a href="#" class="btn" id="modal-register">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>
