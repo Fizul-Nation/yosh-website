@@ -18,7 +18,7 @@
         // Function to load events from CSV file
         async function loadEventsFromCSV() {
   try {
-    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTYatl0OqMmYsX_nDLqevWdLik4vcpgjLeLLe8TTjv6s4MMyboFG3bPRSYmWLU8cx0Xlr3bKVGy6Com/pub?output=csv";
+    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTYatI0oqMmYsX_nDLqevWdLiK4vcpgiLeLLe8TTjv6s4MMyboFG3bPRSYmWLU8cx0Xlr3bKVgY6Com/pub?output=csv";
     const res = await fetch(url);
     const text = await res.text();
 
