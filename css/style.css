@@ -675,4 +675,23 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* LOGO IMAGE OUTLINE */
+        .logo img {
+        filter: drop-shadow(2px 2px 0 black)
+            drop-shadow(-2px -2px 0 black)
+            drop-shadow(2px -2px 0 black)
+            drop-shadow(-2px 2px 0 black);
+        }
+
+    /* TEXT OUTLINE (YOSH UMPSA + NAV LINKS) */
+    header .logo,
+    header .nav-links a {
+    text-shadow:
+        -2px -2px 0 #000,
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000;
+    }
+
     
