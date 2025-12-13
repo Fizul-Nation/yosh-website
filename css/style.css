@@ -799,6 +799,13 @@
     }
 }
 
+.mobile-menu {
+    pointer-events: none;
+}
+
+.mobile-menu.active {
+    pointer-events: auto;
+}
 
 
 
