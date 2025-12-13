@@ -626,6 +626,11 @@
             color: var(--white);
         }
 
+        .modal-body p {
+            color: #ffffff !important;
+        }
+
+
         /* Loading Spinner */
         .spinner {
             display: inline-block;
