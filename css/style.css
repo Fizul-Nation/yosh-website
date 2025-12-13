@@ -687,9 +687,14 @@
          0px  0px 6px #000;
     }
 
+    /* Clean logo shadow for PNG */
+    .logo img {
+    filter: drop-shadow(2px 2px 2px black);
+    }
+
     header .logo,
     header .nav-links a {
-    text-shadow: 0 0 3px #000;
+    text-shadow: 0 0 2px #000;
     }
 
 
