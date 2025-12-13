@@ -799,12 +799,9 @@
     }
 }
 
-.mobile-menu {
-    pointer-events: none;
-}
-
-.mobile-menu.active {
-    pointer-events: auto;
+.social-links a {
+    position: relative;
+    z-index: 9999 !important;
 }
 
 
