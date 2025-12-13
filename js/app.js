@@ -343,13 +343,4 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
     });
 });
 
-// FAKE PARALLAX FOR MOBILE
-document.addEventListener("scroll", () => {
-    const parallaxSections = document.querySelectorAll(".about, .past-events, .upcoming");
-    parallaxSections.forEach(section => {
-        const speed = 0.3; // lower = slower parallax
-        const offset = window.pageYOffset * speed;
-        section.style.backgroundPositionY = -offset + "px";
-    });
-});
 
