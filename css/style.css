@@ -692,6 +692,11 @@
     filter: drop-shadow(2px 2px 2px black);
     }
 
+    header .logo,
+    header .nav-links a {
+    text-shadow: 0 0 2px #000;
+    }
+
 
 
 
