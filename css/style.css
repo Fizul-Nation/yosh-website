@@ -287,7 +287,7 @@
 
         /* About Section */
         .about {
-            background-image: url('https://picsum.photos/seed/people-gathering/1920/1080.jpg');
+            background-image: url('../images/second.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -350,7 +350,7 @@
 
         /* Past Events Section */
         .past-events {
-            background-image: url('https://picsum.photos/seed/past-event-party/1920/1080.jpg');
+            background-image: url('../images/third.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
