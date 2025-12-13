@@ -17,39 +17,50 @@
 
         // Function to load events from CSV file
         async function loadEventsFromCSV() {
-  try {
-    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTYatI0oqMmYsX_nDLqevWdLiK4vcpgiLeLLe8TTjv6s4MMyboFG3bPRSYmWLU8cx0Xlr3bKVgY6Com/pub?output=csv";
-    const res = await fetch(url);
-    const text = await res.text();
+    try {
+        const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTYatI0oqMmYsX_nDLqevWdLiK4vcpgiLeLLe8TTjv6s4MMyboFG3bPRSYmWLU8cx0Xlr3bKVgY6Com/pub?output=csv";
+        const res = await fetch(url);
+        const text = await res.text();
 
-// test update - just checking Git commits
+        const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
 
-    console.log("Fetched CSV text:", text);
+        const rows = parsed.data.map(r => ({
+            title: (r.title || '').trim(),
+            date: (r.date || '').trim(),
+            time: (r.time || '').trim(),
+            location: (r.location || '').trim(),
+            category: (r.category || '').trim(),
+            description: (r.description || '').trim(),
+            image: normalizeImageUrl((r.image || '').trim()),
+            highlight: String(r.highlight).toLowerCase() === 'true'
+        }));
 
-    const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
+        // 🔥 Detect stay-tuned event
+        rows.forEach(e => {
+            const lower = e.date.toLowerCase();
+            e.isStayTuned = (lower === "stay tuned" || lower === "tba" || lower === "coming soon");
+        });
 
-    const rows = parsed.data.map(r => ({
-      title: (r.title || '').trim(),
-      date: (r.date || '').trim(),
-      time: (r.time || '').trim(),
-      location: (r.location || '').trim(),
-      category: (r.category || '').trim(),
-      description: (r.description || '').trim(),
-      image: normalizeImageUrl((r.image || '').trim()),
-      highlight: String(r.highlight).toLowerCase() === 'true'
-    }));
+        const today = new Date();
 
-    const today = new Date();
-    window.pastEvents = rows.filter(e => new Date(e.date) < today);
-    window.upcomingEvents = rows.filter(e => new Date(e.date) >= today);
+        // 🔥 UPCOMING = future dates OR stay-tuned
+        window.upcomingEvents = rows.filter(e =>
+            e.isStayTuned || (!isNaN(new Date(e.date)) && new Date(e.date) >= today)
+        );
 
-    displayPastEvents();
-    displayUpcomingEvents();
-  } catch (err) {
-    console.error('Error loading CSV:', err);
-    loadSampleEvents();
-  }
+        // 🔥 PAST = only real dates that already passed
+        window.pastEvents = rows.filter(e =>
+            !e.isStayTuned && !isNaN(new Date(e.date)) && new Date(e.date) < today
+        );
+
+        displayPastEvents();
+        displayUpcomingEvents();
+    } catch (err) {
+        console.error("Error loading CSV:", err);
+        loadSampleEvents();
+    }
 }
+
 
 function normalizeImageUrl(url) {
   if (!url) return '';
@@ -214,16 +225,76 @@ function normalizeImageUrl(url) {
 
         // Create event card element
         function createEventCard(event, isPast) {
-            const card = document.createElement('div');
-            card.className = 'event-card';
 
-            // Format date
-            const eventDate = new Date(event.date);
-            const formattedDate = eventDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+    let formattedDate;
+
+    // 🔥 Show "Stay Tuned" instead of a real date
+    if (event.isStayTuned) {
+        formattedDate = "Stay Tuned";
+    } else {
+        const eventDate = new Date(event.date);
+        formattedDate = eventDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+
+    const card = document.createElement('div');
+    card.className = 'event-card';
+
+    const imageElement = event.image 
+      ? `<img src="${event.image}" alt="${event.title}"
+             loading="lazy" decoding="async" fetchpriority="low"
+             onerror="this.onerror=null; this.src='https://picsum.photos/seed/default-fallback/600/400.jpg';">`
+      : `<div style="display:flex;justify-content:center;align-items:center;height:100%;width:100%;background-color: var(--accent);color: var(--primary);font-size:2rem;">
+           <i class="fas fa-calendar-alt"></i>
+         </div>`;
+
+    const highlightBadge = isPast && event.highlight 
+        ? `<div class="event-badge">Highlight</div>`
+        : '';
+
+    card.innerHTML = `
+        <div class="event-image">
+            ${imageElement}
+            ${highlightBadge}
+        </div>
+        <div class="event-content">
+            <h3 class="event-title">${event.title}</h3>
+
+            <div class="event-date">
+                <i class="fas fa-calendar"></i>
+                <span>${formattedDate}</span>
+            </div>
+
+            <div class="event-date">
+                <i class="fas fa-clock"></i>
+                <span>${event.time}</span>
+            </div>
+
+            <div class="event-date">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>${event.location}</span>
+            </div>
+
+            <p class="event-description">${event.description.substring(0, 100)}${event.description.length > 100 ? '...' : ''}</p>
+
+            <a href="#" class="event-link" data-event-id="${event.title}">
+                Learn More <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    `;
+
+    const learnMoreLink = card.querySelector('.event-link');
+    learnMoreLink.addEventListener('click', e => {
+        e.preventDefault();
+        showEventModal(event);
+    });
+
+    return card;
+}
+
 
             // Use lazy loading + async decode + fallback for robustness/performance
 const imageElement = event.image 
@@ -272,17 +343,45 @@ const imageElement = event.image
             });
 
             return card;
-        }
+        
 
         // Show event modal with details
         function showEventModal(event) {
-            // Format date
-            const eventDate = new Date(event.date);
-            const formattedDate = eventDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+
+    let formattedDate;
+
+    // 🔥 Same logic in modal
+    if (event.isStayTuned) {
+        formattedDate = "Stay Tuned";
+    } else {
+        const eventDate = new Date(event.date);
+        formattedDate = eventDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+
+    document.getElementById('modal-title').textContent = event.title;
+    document.getElementById('modal-date').textContent = formattedDate;
+    document.getElementById('modal-time').textContent = event.time;
+    document.getElementById('modal-location').textContent = event.location;
+    document.getElementById('modal-category').textContent =
+        event.category.charAt(0).toUpperCase() + event.category.slice(1);
+    document.getElementById('modal-description').textContent = event.description;
+
+    const modalImage = document.getElementById('modal-image');
+    modalImage.src = event.image;
+    modalImage.alt = event.title;
+
+    // 🔥 "Contact Us" instead of "Register Now"
+    const registerLink = document.getElementById('modal-register');
+    registerLink.textContent = "Contact Us";
+    registerLink.href = "#contact";
+
+    eventModal.style.display = 'flex';
+}
+
 
             // Set modal content
             document.getElementById('modal-title').textContent = event.title;
@@ -304,7 +403,7 @@ const imageElement = event.image
 
             // Show modal
             eventModal.style.display = 'flex';
-        }
+        
 
         document.getElementById('modal-register').addEventListener('click', (e) => {
     e.preventDefault();               // avoid default jump
