@@ -73,7 +73,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--white);
+            color: var(--black);
             font-weight: 600;
             transition: color 0.3s;
             position: relative;
@@ -677,8 +677,7 @@
         }
 
         /* Clean thin text outline */
-    header .logo,
-    header .nav-links a {
+    header .logo a {
     text-shadow:
         -2px -2px 0 #000,
          2px -2px 0 #000,
@@ -692,8 +691,7 @@
     filter: drop-shadow(2px 2px 2px black);
     }
 
-    header .logo,
-    header .nav-links a {
+    header .logo a {
     text-shadow: 0 0 2px #000;
     }
 
