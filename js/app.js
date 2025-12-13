@@ -40,8 +40,24 @@
     }));
 
     const today = new Date();
-    window.pastEvents = rows.filter(e => new Date(e.date) < today);
-    window.upcomingEvents = rows.filter(e => new Date(e.date) >= today);
+    window.pastEvents = [];
+window.upcomingEvents = [];
+
+rows.forEach(e => {
+    const d = new Date(e.date);
+
+    if (!e.date || isNaN(d)) {
+        // Invalid date → upcoming
+        window.upcomingEvents.push(e);
+    } else if (d < today) {
+        // Valid past
+        window.pastEvents.push(e);
+    } else {
+        // Valid future
+        window.upcomingEvents.push(e);
+    }
+});
+
 
     displayPastEvents();
     displayUpcomingEvents();
