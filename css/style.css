@@ -804,9 +804,11 @@
     .past-events,
     .upcoming {
         background-attachment: scroll !important;
-        background-size: cover !important;
+        background-size: cover;
+        background-position: center;
     }
 }
+
 
 
 
