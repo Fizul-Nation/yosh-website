@@ -39,9 +39,9 @@
       highlight: String(r.highlight).toLowerCase() === 'true'
     }));
 
-    window.pastEvents = rows.filter(e => e.status === "past");
-window.upcomingEvents = rows.filter(e => e.status === "upcoming");
-
+    const today = new Date();
+    window.pastEvents = rows.filter(e => new Date(e.date) < today);
+    window.upcomingEvents = rows.filter(e => new Date(e.date) >= today);
 
     displayPastEvents();
     displayUpcomingEvents();
@@ -277,14 +277,12 @@ const imageElement = event.image
         // Show event modal with details
         function showEventModal(event) {
             // Format date
-            let formattedDate = event.date && !isNaN(Date.parse(event.date))
-    ? new Date(event.date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })
-    : event.date; // Show "Stay Tuned" or whatever text
-
+            const eventDate = new Date(event.date);
+            const formattedDate = eventDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
 
             // Set modal content
             document.getElementById('modal-title').textContent = event.title;
@@ -307,15 +305,6 @@ const imageElement = event.image
             // Show modal
             eventModal.style.display = 'flex';
         }
-
-        document.getElementById('modal-register').addEventListener('click', (e) => {
-    e.preventDefault();               // avoid default jump
-    eventModal.style.display = 'none'; // close modal
-    document.querySelector('#contact').scrollIntoView({
-        behavior: 'smooth'
-    });
-});
-
 
         // Delete event function
         function deleteEvent(eventTitle) {
