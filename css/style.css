@@ -677,20 +677,7 @@
         }
 
         /* Clean thin text outline */
-    header .logo,
-    header .nav-links a {
-    text-shadow:
-        -2px -2px 0 #000,
-         2px -2px 0 #000,
-        -2px  2px 0 #000,
-         2px  2px 0 #000,
-         0px  0px 6px #000;
-    }
-
-    /* Clean logo shadow for PNG */
-    .logo img {
-    filter: drop-shadow(2px 2px 2px black);
-    }
+    
 
     header .logo,
     header .nav-links a {
