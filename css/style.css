@@ -374,7 +374,7 @@
 
         /* Upcoming Events Section */
         .upcoming {
-            background-image: url('https://picsum.photos/seed/upcoming-event-conference/1920/1080.jpg');
+            background-image: url('../images/fourth.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
