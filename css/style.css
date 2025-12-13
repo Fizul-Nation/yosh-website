@@ -799,6 +799,14 @@
     }
 }
 
+@media (max-width: 768px) {
+    .about,
+    .past-events,
+    .upcoming {
+        background-attachment: scroll !important;
+        background-size: cover !important;
+    }
+}
 
 
 
